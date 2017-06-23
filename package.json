@@ -1,0 +1,17 @@
+{
+  "name": "marketplace",
+  "version": "1.0.0",
+  "description": "Reression test for BMC Marketplace",
+  "scripts": {
+    "postinstall": "webdriver-manager update",
+    "test": "protractor"
+  },
+  "author": "Anastasiia Chechyna (https://github.com/nastya-chechyna)",
+  "license": "MIT",
+  "dependencies": {
+    "protractor": "^5.1.2"
+  },
+  "devDependencies": {
+    "jasmine-reporters": "^2.0.0"
+  }
+}
