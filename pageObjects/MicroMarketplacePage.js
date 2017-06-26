@@ -5,7 +5,8 @@ class MicroMarketplacePage {
         this.RemedyMP= $('a[href$="/remedy"]')
         this.RemedyforceMP = $('a[href$="/remedyforce"]')
         this.startYourFreeTrialButton = $("a[href*='http://www.bmc.com/forms/ITSM-RF-Trial']")
-        this.videoPopup = $('.item .video-thumbnail')     
+        this.videoPopup = $("a[class*='btn-video']") 
+        
        
         }
         openRemedyProductsMP(){
@@ -17,7 +18,8 @@ class MicroMarketplacePage {
         openRemedyforceProductsMP(){
         this.clickOnProducts.click()
         this.RemedyforceMP.click()
-        browser.sleep(1000)
+        browser.sleep(5000)
+       
     }
 
     getRemdyPlatformProducts() {
@@ -34,6 +36,10 @@ class MicroMarketplacePage {
     getRemedyforceProducts(){
         return $("a[href$='/search;categories=136;orderBy=created_at;orderDirection=desc']")
     }
+    getOpenbannerYoutubeVideo(){
+        browser.switchTo().frame(element(by.tagName('iframe')).getWebElement())
+        return $('.video-stream')
+    }
         
     bannersButtonOpenPage(){
         this.startYourFreeTrialButton.click().then(function () {
@@ -49,7 +55,14 @@ class MicroMarketplacePage {
 
     openVideoPopup(){
         this.videoPopup.click()
-        browser.sleep(1500)
+        browser.sleep(5000)
+        //Open in full screen 
+        // browser.actions().
+        //     mouseMove({x: 50, y: 0}).
+        //     doubleClick().
+        //     perform()
+
+
     }
 
 }

@@ -18,9 +18,9 @@ let MicroMarketplacePage = require('../pageObjects/MicroMarketplacePage.js').Mic
             expect(browser.getCurrentUrl()).toBe('http://www.bmc.com/forms/ITSM-RF-TrialFY15-BMCCom.html?cid=oa-DSM_JC_All_FC_BMCCOM_SeeBuyTry_Marketplace_RF_Trial-KK-03-f-05162017&cc=oa&elqcid=2997&sfcid=70114000002L1x1')
         })
 
-        fit('Video popup should open and play', function(){
+        fit('Video popup should open and play (in tablet view)', function(){
             remedyforcemp.openRemedyforceProductsMP()
             remedyforcemp.openVideoPopup()
-            //expect()
+            expect(remedyforcemp.getOpenbannerYoutubeVideo().isPresent()).toBeTruthy()
         })
     })
