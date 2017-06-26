@@ -22,7 +22,7 @@ module.exports.config = {
     ],
     framework: 'jasmine2',
       // Options to be passed to Jasmine.
-onPrepare: function() {
+    onPrepare: function() {
          global.EC = protractor.ExpectedConditions
     // var jasmineReporters = require('jasmine-reporters');
 
