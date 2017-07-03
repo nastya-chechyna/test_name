@@ -9,9 +9,17 @@
   "author": "Anastasiia Chechyna (https://github.com/nastya-chechyna)",
   "license": "MIT",
   "dependencies": {
+    "babel-core": "6.x",
+    "babel-plugin-transform-es2015-modules-commonjs": "6.x",
+    "babel-register": "6.x",
     "protractor": "^5.1.2"
   },
   "devDependencies": {
     "jasmine-reporters": "^2.0.0"
+  },
+  "babel": {
+    "plugins": [
+      "transform-es2015-modules-commonjs"
+    ]
   }
 }

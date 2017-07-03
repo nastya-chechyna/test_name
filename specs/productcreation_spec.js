@@ -5,11 +5,7 @@ describe('Creation products by MP Partners', function () {
   
     let productPage = new ProductPage()
     
-        xit("Login with valid MP Admin credentails ", function() {
-            productPage.loginMPadmin(productPage.adminEmail, productPage.adminPassword)
-            expect(productPage.AdministrationPanel().getText()).toBe(productPage.Administration, 'You are not login to MP')
-        
-        })
+
         xit("Login as MP Patner, 21st Century Software Inc", function() {
             productPage.loginMPadmin(productPage.adminEmail, productPage.adminPassword)
             productPage.loginPartner()

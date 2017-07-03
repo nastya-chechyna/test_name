@@ -1,78 +1,102 @@
-class HomePage {
+import pages from '../pageObjects';
+import fw from '../framework';
+
+export class HomePage {
 
     constructor() {
-      
-        this.searchField = $('.container #search-input')
+        // Page locators
+        this.searchField    = element(by.css('.container #search-input'))
+        this.navArrow       = element(by.css('.icon-next'))
+        this.getStartButton = element(by.cssContainingText('.btn-brand', 'Get Started'))
+        this.login          = element(by.css('.home .pull-right ul li:last-child'))
+        this.emailField     = element(by.css("input[name='email']"))
+        this.passwordField  = element(by.css("input[type='password']"))
+        this.submit         = element(by.css("input[type='submit']"))
+        this.navBarProducts = element(by.xpath("//a[text()='Products']"))
+        this.identityHeader = element(by.cssContainingText('.title', 'Remedyforce'))
+        
+        // Pages text
+        this.Administration = 'Administration'
         this.threeCharTitle = 'BMC'
-        this.twoCharTitle = 'BM'
-        this.fullNameTitle = 'BMC Software'
+        this.twoCharTitle   = 'BM'
+        this.fullNameTitle  = 'BMC Software'
         this.incorrectTitle = 'Test for Incorrect title'
-        this.message = 'Type at least 3 characters to search'
+        this.message        = 'Type at least 3 characters to search'
         this.messageIncorrectResult = 'No Results'
-        this.navArrow = $('.icon-next')
-        this.getStartedButton = $("a[href='https://developers.bmc.com/']")
+        this.adminEmail     = 'anastasiia_chechyna_tp@bmc.com'
+        this.adminPassword  = 'P@ssword01'
+       
     }
-
+    
+    expandProductsList(){
+            this.navBarProducts.click()
+            return this
+        }
+    dropDownItem(item) {
+            return element(by.xpath(`//*[contains(@class, "dropdown-menu")]//a[text()="${item}"]`));
+    }
+    
+    openRemedyforceProductsMP(item){
+            this.dropDownItem(item).click()
+            fw.CommonActions.waitForElementVisible(this.identityHeader, 10)
+            return pages.RemedyforcePage
+       
+        }
     searchProduct(title = '') {
-        this.searchField.sendKeys(title) 
-        browser.sleep(5000)
-        //       browser.wait(EC.visibilityOf($("#search-bar-messages")), 10000,
-        //    'Search result should be displayed after 3+ charecters typing')
-        // // browser.wait(EC.visibilityOf($(".container .search-results")), 10000,
-        // //    'Search result should be displayed after 3+ charecters typing')
-     
+            this.searchField.sendKeys(title) 
+            fw.CommonActions.wait(5)
+            return this          
     }
 
     getAllResults() {
-        return $$(".row .name-container a[href^='/companies/']")
-            }
+            return $$(".row .name-container a[href^='/companies/']")
+    }
     
     getMessage(){
-        return $('.container .search-messages')
+            return element(by.css('.container .search-messages'))
     }
     
     bannerNavigationArrow(){
-        this.navArrow.click()
-
+            this.navArrow.click()
+            return this
     }       
 
     getStartedPage(){
-        this.bannerNavigationArrow()
-        this.getStartedButton.click().then(function () {
-        browser.getAllWindowHandles().then(function (handles) {
-            var newWindowHandle = handles[1] // this is your new window
-            browser.switchTo().window(newWindowHandle).then(function () {
+        this.getStartButton.click().then(function () {
+            browser.getAllWindowHandles().then(function (handles) {
+                var newWindowHandle = handles[1] // this is your new window
+                    browser.switchTo().window(newWindowHandle).then(function () {
+                
                 console.log(newWindowHandle)
             })
         })
     })
-        
-        
+}       
 
+    openLoginForm(){
+            this.login.click()
+            fw.CommonActions.waitForElementVisible(this.emailField, 5)
+            return this
     }
-        
-    
-    // arraySearch(){  
-    //     let arrayAllResults = []
-    //     let result = []
-        
-    //     this.getAllResults.getText().then(function (title) {
-    //               arrayAllResults.push(title)
-    //    })
-    //    this.arrayAllResults
-    //             for (let i = 0; i < arrayAllResults.length; i++){
-    //              if (title === 'BMC Software'){
-    //                 result.push(i)
-                
-    //             }  
-    //         }
-    //             //console.log(arrayAllResults)
-    //             console.log(result)
-         
-        
-        
-    // }
+
+    filledAdminCredentials(email = '', password = ''){
+            this.emailField.sendKeys(email);
+            this.passwordField.sendKeys(password);
+            return this
+    }
+
+    submitLoginForm(){
+            this.submit.click()
+            fw.CommonActions.waitForElementClickable(this.AdministrationPanel(), 5)
+            return this
+    }
+
+    AdministrationPanel(){ 
+            return element(by.css("a[href*='/admin']"))
+    }
+
+
 }
 
 
-module.exports.HomePage = HomePage
+//module.exports.HomePage = HomePage

@@ -23,6 +23,7 @@ module.exports.config = {
     framework: 'jasmine2',
       // Options to be passed to Jasmine.
     onPrepare: function() {
+        require('babel-register')({retainLines: true});
          global.EC = protractor.ExpectedConditions
     // var jasmineReporters = require('jasmine-reporters');
 

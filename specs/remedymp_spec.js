@@ -1,4 +1,4 @@
-let MicroMarketplacePage = require('../pageObjects/MicroMarketplacePage.js').MicroMarketplacePage
+//let MicroMarketplacePage = require('../pageObjects/MicroMarketplacePage.js').MicroMarketplacePage
 
     describe('Remedy Marketplace tests', function() {
         let remedymp = new MicroMarketplacePage()

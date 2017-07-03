@@ -1,32 +1,11 @@
-class ProductPage {
+export class ProductPage {
 
     constructor() {
         
-        this.adminEmail = 'anastasiia_chechyna_tp@bmc.com'
-        this.adminPassword = 'P@ssword01'
-        this.login = $('.home .pull-right ul li:last-child')
-        this.emailField = $("input[name='email']")
-        this.passwordField = $("input[type='password']")
-        this.submit = $("input[type='submit']")
-        this.Administration = 'Administration'
         this.PartnerAdmin = 'Partner Administration'
         this.productName = 'Automated test product'
         this.pendingStatusText = 'pending'
     }
-
-    loginMPadmin(email = '', password = '') {
-        this.login.click()
-        this.passwordField.sendKeys(password);
-        this.emailField.sendKeys(email);
-        this.submit.click()
-        browser.sleep(2000)
-
-    }
-    AdministrationPanel(){ 
-        browser.sleep(2000)
-        return $("a[href*='/admin']")
-    }
-
     loginPartner(){
         
         browser.sleep(5000)
